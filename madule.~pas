@@ -1,0 +1,84 @@
+unit madule;
+
+interface
+
+uses
+  SysUtils, Classes, DB, ADODB;
+
+type
+  TDataModule1 = class(TDataModule)
+    ADOConnection1: TADOConnection;
+    adoq_RDF_XML: TADOQuery;
+    adoq_RDF_XML2: TADOQuery;
+    ADOQ_temp: TADOQuery;
+    ADOQ_property_between: TADOQuery;
+    ADOQ_property_betweenproperty_name: TWideStringField;
+    ADOQ_property_betweenid: TBCDField;
+    ADOQ_property_betweenfuzzy_value: TFloatField;
+    ADOQ_property_betweenfrom_class: TWideStringField;
+    ADOQ_property_betweento_class: TWideStringField;
+    adoq_RDF_XMLrdf: TWideStringField;
+    adoq_RDF_XMLid: TBCDField;
+    adoq_RDF_XMLclass1: TWideStringField;
+    adoq_RDF_XMLclass2: TWideStringField;
+    adoq_RDF_XMLlevel: TIntegerField;
+    adoq_RDF_XML_delete: TADOQuery;
+    adoq_RDF_XMLclass3: TWideStringField;
+    ADOQ_temprdf: TWideStringField;
+    ADOQ_tempid: TBCDField;
+    ADOQ_tempclass1: TWideStringField;
+    ADOQ_tempclass2: TWideStringField;
+    ADOQ_templevel: TIntegerField;
+    ADOQ_tempclass3: TWideStringField;
+    ADOQ_temp2: TADOQuery;
+    ADOQ_temp2rdf: TWideStringField;
+    ADOQ_temp2id: TBCDField;
+    ADOQ_temp2class1: TWideStringField;
+    ADOQ_temp2class2: TWideStringField;
+    ADOQ_temp2level: TIntegerField;
+    ADOQ_temp2class3: TWideStringField;
+    ADOQ_property_betweenproperty_type: TWideStringField;
+    ADOQ_property_betweenparent: TWideStringField;
+    ADOQ_class: TADOQuery;
+    ADOQ_classclass_name: TWideStringField;
+    ADOQ_classid: TBCDField;
+    ADOQ_classparent: TWideStringField;
+    ADOQ_classfuzzy_value: TFloatField;
+    ADOQ_classtype: TWideStringField;
+    ADOQ_classinequivalent_type: TWideStringField;
+    adoq_RDF_XML2rdf: TWideStringField;
+    adoq_RDF_XML2id: TBCDField;
+    adoq_RDF_XML2class1: TWideStringField;
+    adoq_RDF_XML2class2: TWideStringField;
+    adoq_RDF_XML2level: TIntegerField;
+    adoq_RDF_XML2class3: TWideStringField;
+    ADOQ_property_betweeninequivalent_type: TWideStringField;
+    ADOQ_property_betweeninverse: TWideStringField;
+    ADOQ_individual: TADOQuery;
+    ADOQ_class_relation: TADOQuery;
+    ADOQ_individualindi_name: TWideStringField;
+    ADOQ_individualid: TBCDField;
+    ADOQ_individualfrom_class: TWideStringField;
+    ADOQ_class_relationrdf: TWideStringField;
+    ADOQ_class_relationid: TBCDField;
+    ADOQ_class_relationfrom_class: TWideStringField;
+    ADOQ_class_relationto_class: TWideStringField;
+    ADOQ_class_relationinequivalent_type: TWideStringField;
+    ADOQ_class_relationfuzzy_value: TFloatField;
+    ADOQ_class_relationtype: TWideStringField;
+    ADOQ_class_relationproperty_name: TWideStringField;
+    ADOQ_class_relationalgorithm_name: TWideStringField;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  DataModule1: TDataModule1;
+
+implementation
+
+{$R *.dfm}
+
+end.

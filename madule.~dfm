@@ -1,0 +1,321 @@
+object DataModule1: TDataModule1
+  OldCreateOrder = False
+  Left = 352
+  Top = 318
+  Height = 311
+  Width = 399
+  object ADOConnection1: TADOConnection
+    Connected = True
+    ConnectionString = 
+      'Provider=SQLOLEDB.1;Integrated Security=SSPI;Persist Security In' +
+      'fo=False;Initial Catalog=fowl;Data Source=abasmn'
+    LoginPrompt = False
+    Provider = 'SQLOLEDB.1'
+    Left = 56
+    Top = 8
+  end
+  object adoq_RDF_XML: TADOQuery
+    Active = True
+    Connection = ADOConnection1
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'select * from fuzzy_rdf_xml')
+    Left = 48
+    Top = 144
+    object adoq_RDF_XMLrdf: TWideStringField
+      FieldName = 'rdf'
+      Size = 1000
+    end
+    object adoq_RDF_XMLid: TBCDField
+      FieldName = 'id'
+      ReadOnly = True
+      Precision = 18
+      Size = 0
+    end
+    object adoq_RDF_XMLclass1: TWideStringField
+      FieldName = 'class1'
+      Size = 50
+    end
+    object adoq_RDF_XMLclass2: TWideStringField
+      FieldName = 'class2'
+      Size = 50
+    end
+    object adoq_RDF_XMLlevel: TIntegerField
+      FieldName = 'level'
+    end
+    object adoq_RDF_XMLclass3: TWideStringField
+      FieldName = 'class3'
+      Size = 50
+    end
+  end
+  object adoq_RDF_XML2: TADOQuery
+    Active = True
+    Connection = ADOConnection1
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'select * from fuzzy_rdf_xml')
+    Left = 24
+    Top = 64
+    object adoq_RDF_XML2rdf: TWideStringField
+      FieldName = 'rdf'
+      Size = 1000
+    end
+    object adoq_RDF_XML2id: TBCDField
+      FieldName = 'id'
+      ReadOnly = True
+      Precision = 18
+      Size = 0
+    end
+    object adoq_RDF_XML2class1: TWideStringField
+      FieldName = 'class1'
+      Size = 50
+    end
+    object adoq_RDF_XML2class2: TWideStringField
+      FieldName = 'class2'
+      Size = 50
+    end
+    object adoq_RDF_XML2level: TIntegerField
+      FieldName = 'level'
+    end
+    object adoq_RDF_XML2class3: TWideStringField
+      FieldName = 'class3'
+      Size = 50
+    end
+  end
+  object ADOQ_temp: TADOQuery
+    Active = True
+    Connection = ADOConnection1
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'select * from temp')
+    Left = 320
+    Top = 24
+    object ADOQ_temprdf: TWideStringField
+      FieldName = 'rdf'
+      Size = 1000
+    end
+    object ADOQ_tempid: TBCDField
+      FieldName = 'id'
+      ReadOnly = True
+      Precision = 18
+      Size = 0
+    end
+    object ADOQ_tempclass1: TWideStringField
+      FieldName = 'class1'
+      Size = 50
+    end
+    object ADOQ_tempclass2: TWideStringField
+      FieldName = 'class2'
+      Size = 50
+    end
+    object ADOQ_templevel: TIntegerField
+      FieldName = 'level'
+    end
+    object ADOQ_tempclass3: TWideStringField
+      FieldName = 'class3'
+      Size = 50
+    end
+  end
+  object ADOQ_property_between: TADOQuery
+    Active = True
+    Connection = ADOConnection1
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'select * from  propertis_between')
+    Left = 200
+    Top = 8
+    object ADOQ_property_betweenproperty_name: TWideStringField
+      FieldName = 'property_name'
+      Size = 30
+    end
+    object ADOQ_property_betweenid: TBCDField
+      FieldName = 'id'
+      ReadOnly = True
+      Precision = 18
+      Size = 0
+    end
+    object ADOQ_property_betweenfuzzy_value: TFloatField
+      FieldName = 'fuzzy_value'
+    end
+    object ADOQ_property_betweenfrom_class: TWideStringField
+      FieldName = 'from_class'
+      Size = 50
+    end
+    object ADOQ_property_betweento_class: TWideStringField
+      FieldName = 'to_class'
+      Size = 50
+    end
+    object ADOQ_property_betweenproperty_type: TWideStringField
+      FieldName = 'property_type'
+      Size = 50
+    end
+    object ADOQ_property_betweenparent: TWideStringField
+      FieldName = 'parent'
+      Size = 50
+    end
+    object ADOQ_property_betweeninequivalent_type: TWideStringField
+      FieldName = 'inequivalent_type'
+      Size = 50
+    end
+    object ADOQ_property_betweeninverse: TWideStringField
+      FieldName = 'inverse'
+      Size = 50
+    end
+  end
+  object adoq_RDF_XML_delete: TADOQuery
+    Active = True
+    Connection = ADOConnection1
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'select * from fuzzy_rdf_xml')
+    Left = 56
+    Top = 208
+  end
+  object ADOQ_temp2: TADOQuery
+    Active = True
+    Connection = ADOConnection1
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'select * from temp')
+    Left = 320
+    Top = 80
+    object ADOQ_temp2rdf: TWideStringField
+      FieldName = 'rdf'
+      Size = 1000
+    end
+    object ADOQ_temp2id: TBCDField
+      FieldName = 'id'
+      ReadOnly = True
+      Precision = 18
+      Size = 0
+    end
+    object ADOQ_temp2class1: TWideStringField
+      FieldName = 'class1'
+      Size = 50
+    end
+    object ADOQ_temp2class2: TWideStringField
+      FieldName = 'class2'
+      Size = 50
+    end
+    object ADOQ_temp2level: TIntegerField
+      FieldName = 'level'
+    end
+    object ADOQ_temp2class3: TWideStringField
+      FieldName = 'class3'
+      Size = 50
+    end
+  end
+  object ADOQ_class: TADOQuery
+    Active = True
+    Connection = ADOConnection1
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'select * from  classes')
+    Left = 328
+    Top = 144
+    object ADOQ_classclass_name: TWideStringField
+      FieldName = 'class_name'
+      Size = 50
+    end
+    object ADOQ_classid: TBCDField
+      FieldName = 'id'
+      ReadOnly = True
+      Precision = 18
+      Size = 0
+    end
+    object ADOQ_classparent: TWideStringField
+      FieldName = 'parent'
+      Size = 50
+    end
+    object ADOQ_classfuzzy_value: TFloatField
+      FieldName = 'fuzzy_value'
+    end
+    object ADOQ_classtype: TWideStringField
+      FieldName = 'type'
+      Size = 50
+    end
+    object ADOQ_classinequivalent_type: TWideStringField
+      FieldName = 'inequivalent_type'
+      Size = 50
+    end
+  end
+  object ADOQ_individual: TADOQuery
+    Active = True
+    Connection = ADOConnection1
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'select * from  individuals'
+      '')
+    Left = 192
+    Top = 88
+    object ADOQ_individualindi_name: TWideStringField
+      FieldName = 'indi_name'
+      Size = 50
+    end
+    object ADOQ_individualid: TBCDField
+      FieldName = 'id'
+      ReadOnly = True
+      Precision = 18
+      Size = 0
+    end
+    object ADOQ_individualfrom_class: TWideStringField
+      FieldName = 'from_class'
+      Size = 50
+    end
+  end
+  object ADOQ_class_relation: TADOQuery
+    Connection = ADOConnection1
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'select * from  class_relations'
+      '')
+    Left = 192
+    Top = 168
+    object ADOQ_class_relationrdf: TWideStringField
+      FieldName = 'rdf'
+      Size = 200
+    end
+    object ADOQ_class_relationid: TBCDField
+      FieldName = 'id'
+      ReadOnly = True
+      Precision = 18
+      Size = 0
+    end
+    object ADOQ_class_relationfrom_class: TWideStringField
+      FieldName = 'from_class'
+      Size = 50
+    end
+    object ADOQ_class_relationto_class: TWideStringField
+      FieldName = 'to_class'
+      Size = 50
+    end
+    object ADOQ_class_relationinequivalent_type: TWideStringField
+      FieldName = 'inequivalent_type'
+      Size = 50
+    end
+    object ADOQ_class_relationfuzzy_value: TFloatField
+      FieldName = 'fuzzy_value'
+    end
+    object ADOQ_class_relationtype: TWideStringField
+      FieldName = 'type'
+      Size = 50
+    end
+    object ADOQ_class_relationproperty_name: TWideStringField
+      FieldName = 'property_name'
+      Size = 50
+    end
+    object ADOQ_class_relationalgorithm_name: TWideStringField
+      FieldName = 'algorithm_name'
+      Size = 10
+    end
+  end
+end

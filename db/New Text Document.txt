@@ -1,0 +1,218 @@
+procedure Tfrm_show_class.insert_object_prop_range;
+var id:integer;
+begin
+    DataModule1.adoq_RDF_XML.SQL.Text:='select * from fuzzy_rdf_xml where rdf='+
+    QuotedStr('    <owl:ObjectProperty rdf:ID="'+frm_main.tree_obj_proprty.Selected.Text+'">');
+    DataModule1.adoq_RDF_XML.Open;
+
+    if DataModule1.adoq_RDF_XML.RecordCount=0 then
+    begin
+      DataModule1.adoq_RDF_XML.SQL.Text:='insert into fuzzy_rdf_xml(rdf,class1,class2,level,class3) values('+
+      QuotedStr('    <owl:ObjectProperty rdf:ID="'+frm_main.tree_obj_proprty.Selected.Text+'">')+','+
+      QuotedStr(tree_class.Selected.Text)+','+
+      QuotedStr(frm_main.tree_obj_proprty.Selected.Text)+','+
+      IntToStr(3)+','+
+      QuotedStr(frm_main.tree_obj_proprty.Selected.Text)+
+      ')';
+    DataModule1.adoq_RDF_XML.ExecSQL;
+    
+      DataModule1.adoq_RDF_XML.SQL.Text:='insert into fuzzy_rdf_xml(rdf,class1,class2,level,class3) values('+
+      QuotedStr('        <rdfs:range rdf:resource="#'+tree_class.Selected.Text+'"/>')+','+
+      QuotedStr(frm_main.tree_obj_proprty.Selected.Text)+','+
+      QuotedStr('range')+','+
+      IntToStr(3)+','+
+      QuotedStr(frm_main.tree_obj_proprty.Selected.Text)+
+      ')';
+    DataModule1.adoq_RDF_XML.ExecSQL;
+
+      DataModule1.adoq_RDF_XML.SQL.Text:='insert into fuzzy_rdf_xml(rdf,class1,class2,level,class3) values('+
+      QuotedStr('    </owl:ObjectProperty>')+','+
+      QuotedStr(frm_main.tree_obj_proprty.Selected.Text)+','+
+      QuotedStr('range')+','+
+      IntToStr(3)+','+
+      QuotedStr(frm_main.tree_obj_proprty.Selected.Text)+
+      ')';
+    DataModule1.adoq_RDF_XML.ExecSQL;
+
+    end
+    else
+    begin
+      id:=DataModule1.adoq_RDF_XMLid.AsInteger;
+
+      DataModule1.adoq_RDF_XML.SQL.Text:='select * from fuzzy_rdf_xml  where id>'+IntToStr(id);
+      DataModule1.adoq_RDF_XML.Open;
+
+      while not DataModule1.adoq_RDF_XML.Eof do
+      begin
+        DataModule1.ADOQ_temp.SQL.Text:='insert into temp(rdf,class1,class2,level,class3) values('+
+        QuotedStr(DataModule1.adoq_RDF_XMLrdf.AsString)+','+
+        QuotedStr(DataModule1.adoq_RDF_XMLclass1.AsString)+','+
+        QuotedStr(DataModule1.adoq_RDF_XMLclass2.AsString)+','+
+        DataModule1.adoq_RDF_XMLlevel.AsString+','+
+        QuotedStr(DataModule1.adoq_RDF_XMLclass3.AsString)+
+        ')';
+        DataModule1.ADOQ_temp.ExecSQL;
+        DataModule1.adoq_RDF_XML.Next;
+      end;
+
+      DataModule1.adoq_RDF_XML.SQL.Text:='delete from fuzzy_rdf_xml  where id >'+IntToStr(id);
+      DataModule1.adoq_RDF_XML.ExecSQL;
+
+
+      ///////////////
+      DataModule1.adoq_RDF_XML.SQL.Text:='insert into fuzzy_rdf_xml(rdf,class1,class2,level,class3) values('+
+      QuotedStr('        <rdfs:range>')+','+
+      QuotedStr(frm_main.tree_obj_proprty.Selected.Text)+','+
+      QuotedStr('range')+','+
+      IntToStr(3)+','+
+      QuotedStr(frm_main.tree_obj_proprty.Selected.Text)+
+      ')';
+      DataModule1.adoq_RDF_XML.ExecSQL;
+
+      DataModule1.adoq_RDF_XML.SQL.Text:='insert into fuzzy_rdf_xml(rdf,class1,class2,level,class3) values('+
+      QuotedStr('            <owl:Class>')+','+
+      QuotedStr(frm_main.tree_obj_proprty.Selected.Text)+','+
+      QuotedStr('range')+','+
+      IntToStr(3)+','+
+      QuotedStr(frm_main.tree_obj_proprty.Selected.Text)+
+      ')';
+      DataModule1.adoq_RDF_XML.ExecSQL;
+
+      DataModule1.adoq_RDF_XML.SQL.Text:='insert into fuzzy_rdf_xml(rdf,class1,class2,level,class3) values('+
+      QuotedStr('                <owl:unionOf rdf:parseType="Collection">')+','+
+      QuotedStr(frm_main.tree_obj_proprty.Selected.Text)+','+
+      QuotedStr('range')+','+
+      IntToStr(3)+','+
+      QuotedStr(frm_main.tree_obj_proprty.Selected.Text)+
+      ')';
+      DataModule1.adoq_RDF_XML.ExecSQL;
+      /////////////////////
+
+      DataModule1.adoq_RDF_XML.SQL.Text:='insert into fuzzy_rdf_xml(rdf,class1,class2,level,class3) values('+
+      QuotedStr('                    <owl:Class rdf:about="#'+tree_class.Selected.Text+'"/>')+','+
+      QuotedStr(frm_main.tree_obj_proprty.Selected.Text)+','+
+      QuotedStr('range')+','+
+      IntToStr(3)+','+
+      QuotedStr(frm_main.tree_obj_proprty.Selected.Text)+
+      ')';
+      DataModule1.adoq_RDF_XML.ExecSQL;
+
+
+      {//////////////// delete from temp ////////////}
+
+        DataModule1.ADOQ_temp.SQL.Text:='delete from temp  where class3='+QuotedStr(frm_main.tree_obj_proprty.Selected.Text)+
+        ' and class2='+QuotedStr('range')+
+
+        ' and (rdf='+QuotedStr('                </owl:unionOf>')+
+
+        ' or rdf='+QuotedStr('            </owl:Class>')+
+        ' or rdf='+QuotedStr('        </rdfs:range>')+
+        ' or rdf='+QuotedStr('    </owl:ObjectProperty>')+
+
+
+
+        ' or rdf='+QuotedStr('        <rdfs:range>')+
+        ' or rdf='+QuotedStr('            <owl:Class>')+
+        ' or rdf='+QuotedStr('                <owl:unionOf rdf:parseType="Collection">')+
+        ')';
+        DataModule1.ADOQ_temp.ExecSQL;
+
+
+       DataModule1.ADOQ_temp2.SQL.Text:='select * from temp where class3='+QuotedStr(frm_main.tree_obj_proprty.Selected.Text)+
+        ' and class2='+QuotedStr('range')+' and rdf like '+QuotedStr('        <rdfs:range rdf:resource=%');
+       DataModule1.ADOQ_temp2.Open;
+
+       while not DataModule1.ADOQ_temp2.Eof do
+       begin
+        DataModule1.ADOQ_temp.SQL.Text:='update temp set rdf='+
+        QuotedStr('                    <owl:Class rdf:about=#'+DataModule1.ADOQ_temp2class1.AsString+'"/>')+
+        ' where id='+DataModule1.ADOQ_temp2id.AsString;
+        DataModule1.ADOQ_temp.ExecSQL;
+        DataModule1.ADOQ_temp2.Next;
+       end;
+
+
+        DataModule1.ADOQ_temp.SQL.Text:='select * from temp  where class3='+QuotedStr(frm_main.tree_obj_proprty.Selected.Text)+
+        ' and class2='+QuotedStr('range') ;
+        DataModule1.ADOQ_temp.Open;
+
+        while not DataModule1.ADOQ_temp.Eof do
+        begin
+          DataModule1.adoq_RDF_XML.SQL.Text:='insert into fuzzy_rdf_xml(rdf,class1,class2,level,class3) values('+
+          QuotedStr(DataModule1.ADOQ_temprdf.AsString)+','+
+          QuotedStr(DataModule1.ADOQ_tempclass1.AsString)+','+
+          QuotedStr(DataModule1.ADOQ_tempclass2.AsString)+','+
+          DataModule1.ADOQ_templevel.AsString+','+
+          QuotedStr(DataModule1.ADOQ_tempclass3.AsString)+
+          ')';
+          DataModule1.adoq_RDF_XML.ExecSQL;
+          DataModule1.ADOQ_temp.Next;
+        end;
+
+        DataModule1.ADOQ_temp.SQL.Text:='delete from temp where class3='+QuotedStr(frm_main.tree_obj_proprty.Selected.Text)+
+        ' and class2='+QuotedStr('range');
+        DataModule1.ADOQ_temp.ExecSQL;
+
+         DataModule1.adoq_RDF_XML.SQL.Text:='insert into fuzzy_rdf_xml(rdf,class1,class2,level,class3) values('+
+        QuotedStr('                </owl:unionOf>')+','+
+        QuotedStr(frm_main.tree_obj_proprty.Selected.Text)+','+
+        QuotedStr('range')+','+
+        IntToStr(3)+','+
+        QuotedStr(frm_main.tree_obj_proprty.Selected.Text)+
+        ')';
+        DataModule1.adoq_RDF_XML.ExecSQL;
+
+        DataModule1.adoq_RDF_XML.SQL.Text:='insert into fuzzy_rdf_xml(rdf,class1,class2,level,class3) values('+
+        QuotedStr('            </owl:Class>')+','+
+        QuotedStr(frm_main.tree_obj_proprty.Selected.Text)+','+
+        QuotedStr('range')+','+
+        IntToStr(3)+','+
+        QuotedStr(frm_main.tree_obj_proprty.Selected.Text)+
+        ')';
+        DataModule1.adoq_RDF_XML.ExecSQL;
+
+        DataModule1.adoq_RDF_XML.SQL.Text:='insert into fuzzy_rdf_xml(rdf,class1,class2,level,class3) values('+
+        QuotedStr('        </rdfs:range>')+','+
+        QuotedStr(frm_main.tree_obj_proprty.Selected.Text)+','+
+        QuotedStr('range')+','+
+        IntToStr(3)+','+
+        QuotedStr(frm_main.tree_obj_proprty.Selected.Text)+
+        ')';
+        DataModule1.adoq_RDF_XML.ExecSQL;
+
+        DataModule1.adoq_RDF_XML.SQL.Text:='insert into fuzzy_rdf_xml(rdf,class1,class2,level,class3) values('+
+        QuotedStr('    </owl:ObjectProperty>')+','+
+        QuotedStr(frm_main.tree_obj_proprty.Selected.Text)+','+
+        QuotedStr('range')+','+
+        IntToStr(3)+','+
+        QuotedStr(frm_main.tree_obj_proprty.Selected.Text)+
+        ')';
+        DataModule1.adoq_RDF_XML.ExecSQL;
+
+      {//////////////// delete from temp ////////////}
+
+      ////////// other from temp to main  ////////////
+
+        DataModule1.ADOQ_temp.SQL.Text:='select * from temp';
+        DataModule1.ADOQ_temp.Open;
+
+        while not DataModule1.ADOQ_temp.Eof do
+        begin
+          DataModule1.adoq_RDF_XML.SQL.Text:='insert into fuzzy_rdf_xml(rdf,class1,class2,level,class3) values('+
+          QuotedStr(DataModule1.ADOQ_temprdf.AsString)+','+
+          QuotedStr(DataModule1.ADOQ_tempclass1.AsString)+','+
+          QuotedStr(DataModule1.ADOQ_tempclass2.AsString)+','+
+          DataModule1.ADOQ_templevel.AsString+','+
+          QuotedStr(DataModule1.ADOQ_tempclass3.AsString)+
+          ')';
+          DataModule1.adoq_RDF_XML.ExecSQL;
+          DataModule1.ADOQ_temp.Next;
+        end;
+
+
+    end;
+
+
+
+
+end;

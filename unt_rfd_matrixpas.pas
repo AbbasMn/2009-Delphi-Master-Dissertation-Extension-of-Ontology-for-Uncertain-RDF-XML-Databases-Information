@@ -1,0 +1,44 @@
+unit unt_rfd_matrixpas;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, SUIMemo;
+
+type
+  Tfrm_rfd_matrix = class(TForm)
+    suiMemo1: TsuiMemo;
+    procedure FormShow(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frm_rfd_matrix: Tfrm_rfd_matrix;
+
+implementation
+
+uses madule;
+
+{$R *.dfm}
+
+procedure Tfrm_rfd_matrix.FormShow(Sender: TObject);
+begin
+  suiMemo1.Lines.Clear;
+  suiMemo1.Lines.Add('<?xml:namespace name="http://www.w3.org/TR/WD-rdf-syntax#"as="RDF"?>');  
+  DataModule1.ADOQ_rfd_matrix.SQL.Text:='select * from rdf_matrix order by id';
+  DataModule1.ADOQ_rfd_matrix.Open;
+
+  DataModule1.ADOQ_rfd_matrix.First;
+
+  while not DataModule1.ADOQ_rfd_matrix.Eof do
+  begin
+    suiMemo1.Lines.Add(DataModule1.ADOQ_rfd_matrixrdf.AsString);
+    DataModule1.ADOQ_rfd_matrix.Next;
+  end;
+end;
+
+end.
